@@ -1,30 +1,12 @@
-# README for Simple Webpage Project
+# React + Vite
 
-This project is a simple webpage that demonstrates the use of HTML, CSS, and JavaScript. 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Project Structure
+Currently, two official plugins are available:
 
-```
-simple-webpage
-├── src
-│   ├── index.html       # Main HTML document
-│   ├── css
-│   │   └── styles.css   # Styles for the webpage
-│   ├── js
-│   │   └── script.js     # JavaScript code for interactivity
-│   └── assets            # Directory for additional assets
-└── README.md             # Documentation for the project
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Getting Started
+## Expanding the ESLint configuration
 
-To set up and run the webpage, follow these steps:
-
-1. Clone the repository to your local machine.
-2. Open the `src/index.html` file in a web browser to view the webpage.
-3. Modify the `src/css/styles.css` file to change the styles as needed.
-4. Update the `src/js/script.js` file to add or modify interactivity.
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
