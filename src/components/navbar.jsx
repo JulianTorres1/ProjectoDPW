@@ -22,7 +22,7 @@ export default function Navbar() {
       <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between px-4 py-3">
         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={LogoIcono} className="h-8" alt="Logo" />
-          <span className="text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="text-2xl font-semibold whitespace-nowrap bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
             Futbol Cartagenero
           </span>
         </a>
