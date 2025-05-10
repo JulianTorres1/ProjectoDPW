@@ -1,7 +1,7 @@
+// filepath: /workspaces/ProjectoDPW/src/App.jsx
 import React, { useEffect, useRef } from 'react';
 import Navbar from './components/navbar';
 import Footer from './components/footer';
-import Header from './components/header';
 import Noticias from './components/noticia';
 import noticiasFutbol from './temporalStatic/noticias';
 import MainNews from './components/mainNews';
@@ -27,11 +27,9 @@ function App() {
   }, []);
 
   return (
-    <div ref={vantaRef} className="min-h-screen flex flex-col text-gray-800">
-      {/* Header */}
-      <div className="w-full">
-        <Header />
-      </div>
+    <div className="relative min-h-screen flex flex-col text-gray-800">
+      {/* Fondo de Vanta.js */}
+      <div ref={vantaRef} className="absolute top-0 left-0 w-full h-full -z-10"></div>
 
       {/* Navbar */}
       <div className="w-full shadow-lg bg-blue-600 text-white z-10 sticky top-0">
@@ -43,13 +41,12 @@ function App() {
         {/* Contenido principal */}
         <section className="flex-1 space-y-6">
           {/* Artículo principal */}
-          
-            <MainNews
-              titulo="Cuántos títulos tiene Cristiano Ronaldo en su carrera: Champions League, Premier, LaLiga"
-              resumen="Cristiano Ronaldo es uno de los futbolistas más laureados de la historia. A lo largo de su carrera ha conseguido un gran número de títulos, tanto a nivel de clubes como con la selección de Portugal."
-              enlace="https://www.directvsports.com/futbol/Cristiano-Ronaldo-llego-a-los-34-titulos-en-su-carrera-20210519-0060.html"
-              imagen="https://www.directvsports.com/__export/1691602384970/sites/dsports/img/2023/08/09/cristiano.jpg_1273855039.jpg" />
-          
+          <MainNews
+            titulo="Cuántos títulos tiene Cristiano Ronaldo en su carrera: Champions League, Premier, LaLiga"
+            resumen="Cristiano Ronaldo es uno de los futbolistas más laureados de la historia. A lo largo de su carrera ha conseguido un gran número de títulos, tanto a nivel de clubes como con la selección de Portugal."
+            enlace="https://www.directvsports.com/futbol/Cristiano-Ronaldo-llego-a-los-34-titulos-en-su-carrera-20210519-0060.html"
+            imagen="https://www.directvsports.com/__export/1691602384970/sites/dsports/img/2023/08/09/cristiano.jpg_1273855039.jpg"
+          />
 
           {/* Noticias */}
           <div>
