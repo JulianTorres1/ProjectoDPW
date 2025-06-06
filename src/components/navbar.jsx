@@ -1,102 +1,110 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import LogoIcono from "../../public/img/LogoIcono.png";
+import React, { useState } from "react";
+import { Search, Menu, X, Bell, User } from "lucide-react";
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [text, setText] = useState("");
-  const fullText = "FUTBOL CARTAGENERO";
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [index, setIndex] = useState(0);
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  // Manejar el efecto de scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Manejar el texto que se escribe dinámicamente
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!isDeleting && index < fullText.length) {
-        setText((prev) => prev + fullText[index]);
-        setIndex((prev) => prev + 1);
-      } else if (isDeleting && index > 1) {
-        setText((prev) => prev.slice(0, -1));
-        setIndex((prev) => prev - 1);
-      } else {
-        setIsDeleting((prev) => !prev);
-      }
-    }, 150);
-
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, index]);
+  const navigationItems = [
+    { name: "Noticias", href: "/noticias" },
+    { name: "Calendario", href: "/calendario" },
+    { name: "Campeonatos", href: "/campeonatos" },
+    { name: "Soccer", href: "/soccer" },
+    { name: "Tennis", href: "/tennis" },
+    { name: "More Sports", href: "/more-sports" },
+  ];
 
   return (
-    <nav
-      className={`sticky top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700 transition-shadow duration-300 ${
-        scrolled ? "shadow-md" : ""
-      }`}
-    >
-      <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between px-4 py-3">
-        <Link
-          to="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <img src={LogoIcono} className="h-8" alt="Logo" />
-          <span className="text-2xl font-semibold whitespace-nowrap bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
-            {text}
-          </span>
-        </Link>
-        <div className="hidden w-full md:block md:w-auto">
-          <ul className="flex flex-col p-4 mt-4 font-medium border rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:p-0 md:border-0 md:bg-transparent">
-            <li>
-              <Link
-                to="/"
-                className="block px-3 py-2 text-white rounded hover:bg-blue-700"
+    <header className="bg-slate-800 text-white shadow-lg relative z-50">
+      <div className="container mx-auto px-4">
+        {/* Top bar */}
+        <div className="flex items-center justify-between py-4">
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <div className="bg-red-600 p-2 rounded-lg">
+              <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <span className="text-red-600 font-bold text-sm">F</span>
+              </div>
+            </div>
+            <h1 className="text-2xl font-bold">Futbol Cartagenero</h1>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex space-x-8">
+            {navigationItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="hover:text-red-400 transition-colors duration-200 font-medium"
               >
-                Inicio
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/noticias"
-                className="block px-3 py-2 text-white rounded hover:bg-blue-700"
-              >
-                Noticias
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/calendario"
-                className="block px-3 py-2 text-white rounded hover:bg-blue-700"
-              >
-                Calendario
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/resultados"
-                className="block px-3 py-2 text-white rounded hover:bg-blue-700"
-              >
-                Resultados
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/equipos"
-                className="block px-3 py-2 text-white rounded hover:bg-blue-700"
-              >
-                Equipos
-              </Link>
-            </li>
-          </ul>
+                {item.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* Action buttons */}
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="p-2 hover:bg-slate-700 rounded-lg transition-colors duration-200"
+            >
+              <Search className="w-5 h-5" />
+            </button>
+            <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors duration-200">
+              <Bell className="w-5 h-5" />
+            </button>
+            <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors duration-200">
+              <User className="w-5 h-5" />
+            </button>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2 hover:bg-slate-700 rounded-lg transition-colors duration-200"
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Search Bar */}
+        {isSearchOpen && (
+          <div className="pb-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search sports news..."
+                className="w-full bg-slate-700 text-white placeholder-slate-400 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                autoFocus
+              />
+              <Search className="absolute right-3 top-3 w-5 h-5 text-slate-400" />
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="lg:hidden pb-4">
+            <nav className="flex flex-col space-y-2">
+              {navigationItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="py-2 px-4 hover:bg-slate-700 rounded-lg transition-colors duration-200"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+          </div>
+        )}
       </div>
-    </nav>
+    </header>
   );
-}
+};
+
+export default Header;

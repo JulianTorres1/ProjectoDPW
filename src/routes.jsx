@@ -1,10 +1,11 @@
 // filepath: /workspaces/ProjectoDPW/src/routes.jsx
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import App from './App';
-import Noticias from './routes/noticias';
-import Resultados from './routes/resultados';
-import Equipos from './routes/equipos';
-import Calendario from './routes/calendario';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import App from "./App";
+import Noticias from "./routes/noticias";
+import Resultados from "./routes/resultados";
+import Equipos from "./routes/equipos";
+import Calendario from "./routes/calendario";
+import Campeonatos from "./routes/campeonatos";
 
 export default function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ export default function AppRoutes() {
         <Route path="/resultados" element={<Resultados resultados={[]} />} />
         <Route path="/equipos" element={<Equipos equipos={[]} />} />
         <Route path="/calendario" element={<Calendario />} />
+        <Route path="/campeonatos" element={<Campeonatos />} />
       </Routes>
     </Router>
   );

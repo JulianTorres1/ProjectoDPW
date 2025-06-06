@@ -1,37 +1,64 @@
-import React, { useEffect, useRef } from 'react';
-import Navbar from './components/navbar';
-import Footer from './components/footer';
-import Noticias from './components/noticia';
-import noticiasFutbol from './temporalStatic/noticias';
-import MainNews from './components/mainNews';
-import NET from 'vanta/dist/vanta.net.min';
-import * as THREE from 'three';
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
+import ArticleCard from "./components/ArticleCard";
+import MainNews from "./components/mainNews";
+import Sidebar from "./components/Sidebar";
+import Equipos from "./components/Equipos";
+
+const noticiasData = [
+  {
+    id: 1,
+    title:
+      "¿Se va de Real Cartagena? Juan José Ramírez en la mira de otros equipos",
+    summary:
+      "El mediocampista cartagenero ha sido clave en el equipo heroico, pero su futuro es incierto ante el interés de otros clubes.",
+    description:
+      "Juan José 'El Colorado' Ramírez, de 22 años, llegó a Real Cartagena en enero de 2025 en calidad de préstamo desde Millonarios, con la mediación del alcalde Dumek Turbay. Su desempeño ha sido destacado, formando una dupla efectiva con Juan José Salcedo. Sin embargo, su rendimiento ha despertado el interés de otros equipos, lo que podría influir en su continuidad en el equipo heroico.",
+    image:
+      "https://www.eluniversal.com.co/resizer/v2/torneo-de-la-b-TBSWMSMBX5ABRHHZQO23RLLK4Y.JPG?auth=311fee6882a8a6b5456fd0985b3bdb3e61f20b0118bac5157dc41f8016854618&smart=true&width=1200&height=800&quality=70",
+    category: "Fútbol local",
+    author: "El Universal",
+    readTime: "3 min",
+    views: "870",
+    publishedAt: "2025-06-06",
+  },
+  {
+    id: 2,
+    title: "Real Cartagena cae 2-3 ante Jaguares en el Torneo BetPlay",
+    summary:
+      "El equipo heroico no pudo sostener la ventaja y complica sus aspiraciones de ascenso en un partido cargado de goles.",
+    description:
+      "En un emocionante encuentro del Torneo BetPlay, Real Cartagena cayó 2-3 frente a Jaguares de Córdoba. A pesar de ir ganando 2-1 hasta el minuto 85, el equipo no logró mantener la ventaja. La derrota provocó la invasión del campo por parte de los hinchas, quienes increparon a los jugadores y al cuerpo técnico. La Dimayor sancionó al club con una multa y la suspensión parcial del estadio Jaime Morón.",
+    image:
+      "https://www.sanjuandemisamores.co/wp-content/uploads/2025/06/Real-Cartagena-cae-3-4-ante-Jaguares-y-complica-su-camino-a-la-final-del-Torneo-BetPlay.jpg",
+    category: "Torneo BetPlay",
+    author: "Futbolred",
+    readTime: "2 min",
+    views: "1.1k",
+    publishedAt: "2025-04-21",
+  },
+  {
+    id: 3,
+    title: "Real Cartagena anuncia mejoras logísticas para sus partidos",
+    summary:
+      "La directiva del club implementará nuevos filtros y mejores procesos de ingreso para los hinchas en el estadio.",
+    description:
+      "Tras los incidentes ocurridos en el partido contra Jaguares, la directiva de Real Cartagena ha anunciado una serie de mejoras logísticas para garantizar la seguridad y comodidad de los aficionados. Estas incluyen la implementación de nuevos filtros de ingreso, optimización de procesos y mayor presencia de personal de seguridad en el estadio Jaime Morón.",
+    image:
+      "https://primertiempo.co/wp-content/uploads/2025/06/img_8630-1-860x684.jpg",
+    category: "Clubes",
+    author: "Primer Tiempo",
+    readTime: "4 min",
+    views: "530",
+    publishedAt: "2025-06-04",
+  },
+];
 
 function App() {
-  const vantaRef = useRef(null);
-
-  useEffect(() => {
-    const vantaEffect = NET({
-      el: vantaRef.current,
-      THREE,
-      color: 0x909090,
-      backgroundColor: 0xd9d9d9,
-      points: 10.0,
-      maxDistance: 20.0,
-    });
-
-    return () => {
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, []);
-
   return (
-    <div className="relative min-h-screen flex flex-col text-gray-800">
-      {/* Fondo de Vanta.js */}
-      <div ref={vantaRef} className="absolute top-0 left-0 w-full h-full -z-10"></div>
-
+    <div className="relative min-h-screen flex flex-col text-gray-800 bg-gray-100">
       {/* Navbar */}
-      <div className="w-full shadow-lg bg-blue-600 text-white z-10 sticky top-0">
+      <div className="w-full shadow bg-white text-gray-800 z-50 sticky top-0">
         <Navbar />
       </div>
 
@@ -40,78 +67,33 @@ function App() {
         {/* Contenido principal */}
         <section className="flex-1 space-y-6">
           {/* Artículo principal */}
-          <MainNews
-            titulo="Cuántos títulos tiene Cristiano Ronaldo en su carrera: Champions League, Premier, LaLiga"
-            resumen="Cristiano Ronaldo es uno de los futbolistas más laureados de la historia. A lo largo de su carrera ha conseguido un gran número de títulos, tanto a nivel de clubes como con la selección de Portugal."
-            enlace="https://www.directvsports.com/futbol/Cristiano-Ronaldo-llego-a-los-34-titulos-en-su-carrera-20210519-0060.html"
-            imagen="https://www.directvsports.com/__export/1691602384970/sites/dsports/img/2023/08/09/cristiano.jpg_1273855039.jpg"
-          />
+          <MainNews />
 
-{/* Noticias */}
-          <div className=''>
-            <h3 className="text-xl font-semibold mb-3 text-blue-700">Últimas Noticias</h3>
+          {/* Noticias */}
+          <div>
+            <h3 className="text-xl font-semibold mb-3 text-blue-700">
+              Noticias
+            </h3>
             <div className="relative flex overflow-x-auto overflow-y-hidden gap-4 pb-2 scroll-smooth snap-x">
-              {noticiasFutbol.slice(0, 3).map((noticia, index) => (
-                <div key={index} className="snap-start shrink-0 w-80">
+              {noticiasData.map((noticia) => (
+                <div key={noticia.id} className="snap-start shrink-0 w-80">
                   <div className="rounded-2xl transition-transform duration-300 ease-in-out transform hover:scale-105 hover:z-10 relative">
-                    <Noticias noticias={[noticia]} />
+                    <ArticleCard article={noticia} />
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-
-
-
-          {/* Galería */}
-          <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-            <h3 className="text-xl font-semibold mb-3 text-blue-700">Galería</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="bg-gray-200 h-32 rounded-lg"></div>
-              <div className="bg-gray-200 h-32 rounded-lg"></div>
-              <div className="bg-gray-200 h-32 rounded-lg"></div>
-            </div>
-          </div>
+          {/* Equipos */}
+          <h3 className="text-xl font-semibold mb-3 text-slate-700">
+            Equipos Destacados
+          </h3>
+          <Equipos />
         </section>
 
-      {/* Aside */}
-      <aside className="w-full lg:w-1/4 bg-white p-6 rounded-2xl shadow-lg border border-gray-200 h-fit lg:sticky lg:top-24">
-        <h3 className="text-lg font-semibold mb-3 text-blue-700">Contenido adicional</h3>
-        <p className="text-gray-600 mb-4">Últimas noticias, enlaces útiles y más sobre el fútbol.</p>
-
-        {/* Noticias destacadas */}
-        <div className="mb-6">
-          <h4 className="text-md font-semibold text-blue-700 mb-2">Noticias destacadas</h4>
-          <div className="bg-gray-100 p-4 rounded-lg shadow-sm">
-            <p className="text-gray-600 text-center">Última hora: [noticia importante]</p>
-          </div>
-        </div>
-
-        {/* Enlaces útiles */}
-        <div className="mb-6">
-          <h4 className="text-md font-semibold text-blue-700 mb-2">Enlaces útiles</h4>
-          <ul className="list-none space-y-2">
-            <li><a href="#" className="text-blue-600 hover:underline">Resultados en vivo</a></li>
-            <li><a href="#" className="text-blue-600 hover:underline">Próximos partidos</a></li>
-            <li><a href="#" className="text-blue-600 hover:underline">Clasificación de equipos</a></li>
-          </ul>
-        </div>
-
-        {/* Estadísticas */}
-        <div className="mb-6">
-          <h4 className="text-md font-semibold text-blue-700 mb-2">Estadísticas recientes</h4>
-          <div className="bg-gray-100 p-4 rounded-lg shadow-sm">
-            <p className="text-gray-600">Mejores jugadores, goles, y más...</p>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-6 text-center">
-          <a href="#" className="inline-block bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Ver más estadísticas</a>
-        </div>
-      </aside>
-
+        {/* Sidebar */}
+        <Sidebar />
       </main>
 
       {/* Footer */}
