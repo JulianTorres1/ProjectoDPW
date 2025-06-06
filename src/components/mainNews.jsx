@@ -7,7 +7,8 @@ const Hero = () => {
       "Real Cartagena dejó escapar una gran oportunidad y cayó ante Jaguares en un partidazo",
     summary:
       "Real Cartagena sufrió un duro revés en casa al perder 3-4 ante Jaguares de Córdoba en un vibrante encuentro por la tercera fecha del Grupo A del Torneo BetPlay I-2025.",
-    image: "public/img/MainNew.jpg",
+    image:
+      "https://blogs.eluniversal.com.co/sites/default/files/styles/interna/public/2025-06/WhatsApp%20Image%202025-06-02%20at%209.49.06%20PM.jpeg?itok=T-XhRs8o",
     description:
       "Real Cartagena sufrió un duro revés en casa al perder 3-4 ante Jaguares de Córdoba en un vibrante encuentro por la tercera fecha del Grupo A del Torneo BetPlay I-2025. Ante un estadio Jaime Morón repleto, el equipo heroico no logró sostener su ventaja en dos ocasiones y terminó cediendo puntos clave en su lucha por llegar a la final.\nEl cuadro cartagenero se adelantó temprano con gol de Juan David Rodríguez, pero Jaguares respondió con ímpetu y logró igualar antes del descanso. En el complemento, el intercambio de goles mantuvo al público al borde del asiento: El Chocolo puso el 2-1, pero Rentería y Altamiranda dieron vuelta el marcador. Ignacio Pereira revivió la ilusión con el 3-3, pero un penal en los minutos finales sentenciado por Wilmar Roldán le dio el triunfo definitivo a la visita.\nCon esta derrota, Real Cartagena se queda con 6 puntos y ve reducidas sus posibilidades de alcanzar la final, mientras Jaguares lidera con 9 unidades y la ventaja deportiva. El equipo de Cardetti ahora está obligado a ganar todo lo que queda y esperar un traspié de los cordobeses para mantener vivas sus aspiraciones. La próxima cita será en Montería, el 7 de junio, en un duelo que promete ser decisivo.",
     category: "Campeonato",
